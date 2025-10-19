@@ -1,0 +1,7 @@
+.chat-box{
+    /* width: 100%; */
+    /* box-sizing: border-box; */
+    position: relative;
+    flex: 1;
+    background-color: rgb(177, 177, 161);
+}

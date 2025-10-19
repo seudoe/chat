@@ -1,0 +1,41 @@
+.outer-msgbox{
+    display: flex;
+    /* background-color: aquamarine;
+    border-radius: 20px; */
+    padding: 10px;
+    /* background-color: antiquewhite; */
+    .msgbox{
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(29, 104, 47);
+        padding: 5px;
+        border-radius: 10px;
+
+        .doc-div{
+            border-radius: 3px;
+            background-color: bisque;
+            padding: 9px;
+            margin-bottom: 7px;
+        }
+        .msg-text{
+            border-radius: 8px;
+            background-color: rgb(70, 0, 136);
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8),
+            2px 2px 4px inset rgba(255, 255, 255, 0.3),
+            -2px -2px 4px inset rgba(255, 255, 255, 0.3);
+            padding: 9px;
+            min-width: 200px;
+            margin-bottom: 6px;
+            span{
+                color: white;
+            }
+            /* border */
+        }
+        .msg-info{
+            font-size: 10px;
+            display: flex;
+            justify-content: end;
+            color: white;
+        }
+    }
+}

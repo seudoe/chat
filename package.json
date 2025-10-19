@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.12.2",
+    "dayjs": "^1.11.18",
+    "nodemon": "^3.1.10",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-router": "^7.9.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
