@@ -4,11 +4,14 @@ import MsgInput from "./MsgInput"
 
 
 export default function ChatBox({msgs}){
+    console.log(msgs)
     return (
         <div className="chat-box">
-            {msgs.map((msg, i) =>{
-                return <MsgBox msg={msg} key={i} />
-            })}
+            <div className="msgs-box">
+                {msgs.map((msg, i) =>{
+                    return <MsgBox msg={msg} key={i} />
+                })}
+            </div>
 
             <MsgInput />
 

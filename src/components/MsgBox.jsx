@@ -8,7 +8,11 @@ export default function MsgBox({msg}){
         <div className="outer-msgbox"
             style={{justifyContent: currentUser ? 'start' : 'end'}}
         >
+            <div className="space" style={{
+                order: currentUser ? 2 : 1
+            }}></div>
             <div className="msgbox" style={{
+                order: currentUser ? 1 : 2,
                 borderBottomLeftRadius: currentUser ? 0 : 'auto',
                 borderBottomRightRadius: currentUser ? 'auto' : 0
             }} >
