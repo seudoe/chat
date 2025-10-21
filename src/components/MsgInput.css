@@ -6,8 +6,7 @@
     background-color: lightgray;
     border-radius: 80px;
     gap: 9px;
-    position: absolute;
-    bottom: 0;
+
     .attach-button-div{
         width: 40px;
         /* background-color: bisque; */

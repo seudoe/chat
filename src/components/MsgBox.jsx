@@ -1,5 +1,5 @@
 import './MsgBox.css'
-
+import dayjs from 'dayjs'
 
 export default function MsgBox({msg}){
     let docPresent = msg.document != 0;
@@ -27,8 +27,10 @@ export default function MsgBox({msg}){
                     </span>
                 </div>
                 <div className="msg-info">
-                    <div className="time">{msg.time}</div>
-                    <div className="isSeen">&nbsp;Y </div>
+                    <div className="time">
+                        {dayjs(currentUser?msg.time.sent:msg.time.delivery).format('h:mm a') }
+                    </div>
+                    <div className="isSeen">&nbsp;&nbsp; {msg.status} &nbsp;</div>
                 </div>
             </div>
         </div>
