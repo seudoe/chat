@@ -35,6 +35,7 @@
             span{
                 color: white;
             }
+            overflow-x: auto;
             /* border */
         }
         .msg-info{

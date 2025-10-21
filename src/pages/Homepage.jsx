@@ -2,18 +2,20 @@ import './HomePage.css'
 
 import ChatBox from "../components/ChatBox"
 import Chats from "../components/Chats"
-import { getChat, getUserFrends, loginUser } from '../utils/connector';
+import { getUserFrends, loginUser } from '../utils/connector';
 import MsgBox from "../components/MsgBox"
 // import { useState } from 'react-dom';
 import { useEffect, useState } from 'react';
+import WelcomeChatBox from '../components/WelcomeChatBox';
 
 export default function HomePage(){
     // let error = undefined;
     const [currentUser, setCurrentUser] = useState({});
     const [currentUserfrends, setUserFrends] = useState([]);
-    const [chatOpened, setChatOpened] = useState(undefined)
+    const activeChatState = useState(undefined)
+    const frendState = useState(undefined)
     useEffect(() => {
-        loginUser({username: 'user1', password:'password1'}, (user, err) => {
+        loginUser({username: 'user2', password:'password2'}, (user, err) => {
             console.log(user)
             // console.log(err)
             if(!user){
@@ -21,25 +23,32 @@ export default function HomePage(){
             }
             else{
                 setCurrentUser(user);
+                console.log('currentUser:::::: ', user)
                 getUserFrends({user: user}, (frends, err) => {
                     if(err) console.log(err);
                     else setUserFrends(frends);
-                    getChat({
-                        userOne: user,
-                        userTwo: frends[0]
-                    },(chat, err) => {
-                        if(err) console.log(err);
-                        else setChatOpened(chat);
-                    })
                 })
             }
         });
     }, [])
 
+
+
     return (
         <div className="home-page">
-            <Chats frends={currentUserfrends} />
-            { chatOpened && ( <ChatBox msgs={chatOpened.msgs} /> )}
+            <Chats 
+                currentUser={currentUser} 
+                frends={currentUserfrends} 
+                activeChatState={activeChatState} 
+                frendState={frendState} 
+            />
+            { activeChatState[0] ? ( 
+                <ChatBox 
+                    activeChatState={activeChatState} 
+                    currentUser={currentUser} 
+                    frendState={frendState} 
+                /> 
+            ): ( <WelcomeChatBox /> )}
         </div>
     )
 }

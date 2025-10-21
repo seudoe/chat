@@ -1,5 +1,6 @@
 // import dayjs from 'dayjs'
 import axios from 'axios'
+// import { response } from 'express';
 
 
 export function loginUser({username, password}, func){
@@ -70,4 +71,30 @@ export function getChat({userOne, userTwo},func){
         console.log('Error in getChat.catch: ',err)
         func(undefined, 'didntconnect: :',res)
     })
+}
+
+export function sendMsg(msg, frendUsername, func){
+    let res
+    console.log('cnctr:: sendMsg. frendUsername: ',frendUsername);
+    axios.put(`/data/username`, {
+        action : 2,
+        Body:{
+            msg: msg,
+            frendUsername: frendUsername
+        }
+    })
+    .then(response => {
+        res = response.data
+        console.log('cnctr:: sendMsg. res:',res);
+        if(res.status === 0){
+            func(res.chat,undefined);
+        } else {
+            func(undefined,'status!=0 :: '+ res)
+        }
+    })
+        .catch(err => {
+        console.log('Error in sendMsg.catch: ',err)
+        func(undefined, 'didntconnect: :',res)
+    })
+   
 }
