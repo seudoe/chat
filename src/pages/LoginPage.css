@@ -1,0 +1,141 @@
+.login-page {
+    position: fixed;
+    top: 60px;
+    bottom: 0px; 
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top left, #2b2b2b, #1e1e1e);
+    font-family: 'Poppins', sans-serif;
+    color: #f0f0f0;
+}
+
+/* Container */
+.login-cont {
+    background: rgba(45, 45, 45, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 18px;
+    padding: 50px 60px;
+    width: 370px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+    /* animation: fadeIn 0.7s ease-in-out; */
+}
+
+/* Labels */
+.login-cont label {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+/* Inputs */
+.login-cont input[type="text"],
+.login-cont input[type="password"] {
+    background: #2e2e2e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    /* margin-bottom: 30px; */
+}
+
+.login-cont input:focus {
+    border-color: #6aa8ff;
+    box-shadow: 0 0 8px #6aa8ff55;
+    background: #333;
+}
+
+/* Buttons container */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    gap: 12px;
+}
+
+/* Buttons base */
+.buttons button {
+    flex: 1;
+    padding: 12px 0;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Reset button */
+.buttons button.reset {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+.buttons button.reset:hover {
+    background: #4a4a4a;
+}
+
+/* Login/Register button */
+.buttons button.loginOrReg {
+    background: linear-gradient(135deg, #4c8dff, #345b8a);
+    color: #fff;
+}
+
+.buttons button.loginOrReg:hover {
+    background: linear-gradient(135deg, #5ea0ff, #3a6bb0);
+}
+
+/* Suggestion */
+.suggestion {
+    text-align: left;
+    font-size: 1rem;
+    margin-top: 20px;
+    color: #bdbdbd;
+}
+
+.suggestion span {
+    color: #5ea0ff;
+    margin-left: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+.suggestion span:hover {
+    color: #88b9ff;
+}
+
+/* Error message */
+.err-div {
+    margin-top: 10px;
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    text-align: left;
+    min-height: 20px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.err-div{
+    margin-bottom: 30px;
+}

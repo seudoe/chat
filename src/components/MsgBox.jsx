@@ -1,7 +1,13 @@
 import './MsgBox.css'
 import dayjs from 'dayjs'
+import AppContext from '../context/AppContext';
+import { useContext } from 'react';
 
-export default function MsgBox({msg, currentUser}){
+
+export default function MsgBox({msg}){
+
+    const {currentUser } = useContext(AppContext);
+
     let docPresent = msg.document != 0;
     let isCurrentUser = msg.sender === currentUser.username;
     // console.log('currentUser: ', currentUser.username, '\tmsg.sender: ',msg.sender)

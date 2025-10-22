@@ -2,8 +2,12 @@ import './Chats.css'
 // import { users } from '../utils/connector'
 import addF_icon from '../assets/images/plus-icon.svg'
 import {getChat} from '../utils/connector'
+import AppContext from '../context/AppContext';
+import { useContext } from 'react';
 
-export default function Chats({currentUser, frends, activeChatState, frendState}){
+export default function Chats(){
+
+    const { currentUser, activeChatState, frendState, currentUserfrends } = useContext(AppContext);
 
     function Chat({frend}){
         function openChat(){
@@ -49,7 +53,7 @@ export default function Chats({currentUser, frends, activeChatState, frendState}
         <div className="left-cont">
             <ChatsHeader />
             <div className="chats-cont">
-                {frends.map((frend, i) => {
+                {currentUserfrends.map((frend, i) => {
                     return <Chat frend={frend} key={i} />
                 })}
             </div>

@@ -4,8 +4,13 @@ import sendIcon from '../assets/images/send-icon.svg'
 import { useState } from 'react'
 import { sendMsg } from '../utils/connector'
 import dayjs from 'dayjs'
+import AppContext from '../context/AppContext';
+import { useContext } from 'react';
 
-export default function MsgInput({activeChatState ,currentUser, frendState}){
+
+export default function MsgInput(){
+
+    const {currentUser, activeChatState, frendState } = useContext(AppContext);
     const msgInpState = useState('');
 
     function sendClik(){
