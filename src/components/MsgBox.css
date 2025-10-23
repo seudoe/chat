@@ -1,48 +1,75 @@
-.outer-msgbox{
+.outer-msgbox {
     display: flex;
     box-sizing: border-box;
     padding: 10px;
     order: -1;
 
-    .space{
+    .space {
         min-width: 20%;
-        /* background-color: aqua; */
     }
-    .msgbox{
-        /* min-width: 70%; */
+    
+    .msgbox {
         min-width: 200px;
         display: flex;
         flex-direction: column;
-        background-color: rgb(43, 142, 255);
-        padding: 5px;
-        border-radius: 10px;
+        background: var(--gradient-message);
+        padding: 8px;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px var(--shadow-color), 0 0 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(123, 44, 191, 0.1);
+        transition: all 0.2s ease;
 
-        .doc-div{
-            border-radius: 3px;
-            background-color: bisque;
-            padding: 9px;
-            margin-bottom: 7px;
+        &:hover {
+            box-shadow: 0 6px 12px var(--shadow-color), 0 0 20px rgba(123, 44, 191, 0.15);
+            transform: translateY(-1px);
         }
-        .msg-text{
+
+        .doc-div {
             border-radius: 8px;
-            background-color: rgb(1, 85, 33);
-            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8),
-            2px 2px 4px inset rgba(255, 255, 255, 0.3),
-            -2px -2px 4px inset rgba(255, 255, 255, 0.3);
-            padding: 13px;
-            /* width: 100%; */
-            margin-bottom: 6px;
-            span{
-                color: white;
-            }
-            overflow-x: auto;
-            /* border */
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            padding: 12px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 10px rgba(123, 44, 191, 0.1);
+            border-left: 3px solid var(--accent-primary);
         }
-        .msg-info{
-            font-size: 10px;
+        
+        .msg-text {
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+                      inset 0 0 6px var(--glow-secondary),
+                      inset 0 0 3px var(--glow-primary);
+            padding: 15px;
+            margin-bottom: 8px;
+            position: relative;
+            overflow-x: auto;
+            border: 1px solid rgba(123, 44, 191, 0.2);
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+                opacity: 0.5;
+            }
+            
+            span {
+                color: var(--text-primary);
+                text-shadow: 0 0 8px var(--glow-secondary);
+            }
+        }
+        
+        .msg-info {
+            font-size: 11px;
             display: flex;
-            justify-content: end;
-            color: white;
+            justify-content: flex-end;
+            color: var(--text-tertiary);
+            padding: 0 5px;
+            font-style: italic;
         }
     }
 }

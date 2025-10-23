@@ -18,10 +18,17 @@ export default function WelcomeChatBox(){
                 top: '50%', right: '50%',
                 transform: 'translate(50%, -50%)',
                 fontSize: '50px',
+                color: 'var(--text-primary)',
+                textShadow: '0 0 20px var(--glow-primary), 0 0 40px var(--glow-secondary)',
+                zIndex: 10,
             }}>
                 Welcome to <br /> 
                 <span style={{
-                    fontSize: '200px'
+                    fontSize: '200px',
+                    background: 'var(--gradient-text)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    filter: 'drop-shadow(0 0 15px var(--glow-primary))'
                 }}>Chatter</span>
             </div>
             <ChatHeader />

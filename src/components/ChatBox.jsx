@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './ChatBox.css'
 import MsgBox from "./MsgBox"
 import MsgInput from "./MsgInput"

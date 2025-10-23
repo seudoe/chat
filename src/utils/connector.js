@@ -98,3 +98,27 @@ export function sendMsg(msg, frendUsername, func){
     })
    
 }
+
+
+export function sendCheckRequest(currentUsername, notifications, setNotifications){
+    console.log('inConnector:: sending check request \ncurrentusername: ','user1','\nNotifications', notifications)
+
+    let res;
+    axios.post(`/chatter/${currentUsername}`,{
+        username: 'user1'
+    })
+    .then((response) => {
+        res = response.data;
+        console.log('inConnector.sendCheckReq:got a response: res.status',res.status)
+        if(res.status === 0){
+            let tempNotifications = notifications;
+            if (tempNotifications.has(res.frend)) tempNotifications.set(res.frend, tempNotifications.get(res.frend)+1);
+            else tempNotifications.set(res.frend, 1); 
+            setNotifications(tempNotifications)
+        }
+        else setNotifications(notifications)
+        // sendCheckRequest(currentUsername, notifications, setNotifications)
+    }).catch((err) => {
+        console.log('inCnctr.sendCheckReq . catch:: Err: ',err)
+    })
+}

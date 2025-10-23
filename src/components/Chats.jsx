@@ -4,11 +4,12 @@ import addF_icon from '../assets/images/plus-icon.svg'
 import {getChat} from '../utils/connector'
 import AppContext from '../context/AppContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function Chats(){
 
     const { currentUser, activeChatState, frendState, currentUserfrends } = useContext(AppContext);
-
+    const navigateTo = useNavigate()
     function Chat({frend}){
         function openChat(){
             frendState[1](frend);
@@ -33,9 +34,16 @@ export default function Chats(){
             </div>
         )
     }
+    function logout(){
+        localStorage.removeItem('chatterAndSomething99');
+        navigateTo('/login')
+    }
     function ChatsHeader(){
         return (
             <header>
+                <div className="logout-button-div">
+                    <button onClick={logout} >Logout</button>
+                </div>
                 <div className="user-name">
                     {currentUser.username}
                 </div>

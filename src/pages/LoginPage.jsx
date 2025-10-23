@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router';
 export default function LoginPage(){
     const navigateTo = useNavigate()
 
-    const { setCurrentUser, setUserFrends, activeChatState, setChecked } = useContext(AppContext);
+    const { setCurrentUser, setUserFrends, activeChatState } = useContext(AppContext);
 
     const [ usernameInp, setUsernameInp ] = useState('')
     const [ passwordInp, setPasswordInp ] = useState('')
@@ -28,9 +28,10 @@ export default function LoginPage(){
     }
 
     function submitCreds(){
+
         if(isLogin){
             loginUser({username: usernameInp, password: passwordInp}, (user, err) => {
-                setChecked(true);
+                // setChecked(true);
                 console.log(user)
                 // console.log(err)
                 if(!user){
@@ -67,6 +68,7 @@ export default function LoginPage(){
     }, [usernameInp])
     async function usernameChecker(e){
         setUsernameInp(e.target.value)
+
     }
     useEffect(() => {
         let valid = /^[A-Za-z0-9_.@#$%^&*!+=\-/]{8,18}$/.test(passwordInp)
@@ -82,12 +84,12 @@ export default function LoginPage(){
         <div className="login-page">
             <div className="login-cont">
                 <label htmlFor="username">Username</label>
-                <input type="text" name="username" 
+                <input type="text" name="username" onKeyDown={e=>{if(e.key==='Enter');}}
                     onChange={usernameChecker} value={usernameInp}/>
                 <div className="err-div" ref={errDivRef}>{usernamErrText}</div>
 
                 <label htmlFor="password">Password</label>
-                <input type="text" name="password" 
+                <input type="text" name="password" onKeyDown={e=>{if(e.key==='Enter')submitCreds()}}
                     onChange={passwordChecker} value={passwordInp} />
                 <div className="err-div" ref={errDivRef}>{passwordErrText}</div>
 
@@ -95,7 +97,7 @@ export default function LoginPage(){
                     <button className="reset" 
                         onClick={() =>{setUsernameInp(''); setPasswordInp('')}}
                     >Reset</button>
-                    <button className="loginOrReg" ref={buttonRef} onClick={submitCreds}>Login</button>
+                    <button className="loginOrReg" ref={buttonRef} onClick={submitCreds}>{isLogin?'Login':'Register'}</button>
                 </div>
 
                 <div className="suggestion" ref={suggDivRef}>

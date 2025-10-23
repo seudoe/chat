@@ -1,57 +1,85 @@
 .login-page {
     position: fixed;
     top: 60px;
-    bottom: 0px; 
+    bottom: 0px;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at top left, #2b2b2b, #1e1e1e);
+    background: var(--gradient-dark);
     font-family: 'Poppins', sans-serif;
-    color: #f0f0f0;
+    color: var(--text-primary);
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at top left, rgba(123, 44, 191, 0.1), transparent 60%);
+        pointer-events: none;
+        z-index: 1;
+    }
 }
 
 /* Container */
 .login-cont {
-    background: rgba(45, 45, 45, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    background: var(--bg-secondary);
+    border: 1px solid rgba(123, 44, 191, 0.2);
+    box-shadow: 0 8px 30px var(--shadow-color), 0 0 20px var(--glow-secondary);
     border-radius: 18px;
     padding: 50px 60px;
     width: 370px;
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
-    /* gap: 20px; */
-    /* animation: fadeIn 0.7s ease-in-out; */
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 0.7s ease-in-out;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--gradient-message);
+        border-radius: 18px;
+        z-index: -1;
+        opacity: 0.7;
+    }
 }
 
 /* Labels */
 .login-cont label {
     font-size: 1.25rem;
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 4px;
+    text-shadow: 0 0 10px var(--glow-secondary);
 }
 
 /* Inputs */
 .login-cont input[type="text"],
 .login-cont input[type="password"] {
-    background: #2e2e2e;
-    border: 1px solid #444;
+    background: rgba(30, 30, 36, 0.3);
+    border: 1px solid var(--accent-tertiary);
     border-radius: 8px;
     padding: 12px 14px;
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 1rem;
     outline: none;
     transition: all 0.2s ease-in-out;
-    /* margin-bottom: 30px; */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .login-cont input:focus {
-    border-color: #6aa8ff;
-    box-shadow: 0 0 8px #6aa8ff55;
-    background: #333;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 12px var(--glow-secondary), inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    background: rgba(30, 30, 36, 0.5);
 }
 
 /* Buttons container */
@@ -76,23 +104,29 @@
 
 /* Reset button */
 .buttons button.reset {
-    background: #3a3a3a;
-    color: #e0e0e0;
-    border: 1px solid #555;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--accent-tertiary);
+    box-shadow: 0 3px 6px var(--shadow-color);
 }
 
 .buttons button.reset:hover {
-    background: #4a4a4a;
+    background: var(--bg-secondary);
+    box-shadow: 0 5px 10px var(--shadow-color), 0 0 10px var(--glow-secondary);
+    transform: translateY(-2px);
 }
 
 /* Login/Register button */
 .buttons button.loginOrReg {
-    background: linear-gradient(135deg, #4c8dff, #345b8a);
-    color: #fff;
+    background: var(--gradient-button);
+    color: var(--text-primary);
+    box-shadow: 0 3px 6px var(--shadow-color), 0 0 10px var(--glow-secondary);
 }
 
 .buttons button.loginOrReg:hover {
-    background: linear-gradient(135deg, #5ea0ff, #3a6bb0);
+    background: var(--gradient-button-hover);
+    box-shadow: 0 5px 10px var(--shadow-color), 0 0 15px var(--glow-primary);
+    transform: translateY(-2px);
 }
 
 /* Suggestion */
@@ -100,28 +134,31 @@
     text-align: left;
     font-size: 1rem;
     margin-top: 20px;
-    color: #bdbdbd;
+    color: var(--text-secondary);
 }
 
 .suggestion span {
-    color: #5ea0ff;
+    color: var(--accent-primary);
     margin-left: 6px;
     cursor: pointer;
     font-weight: 600;
-    transition: color 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 0 0 5px var(--glow-secondary);
 }
 
 .suggestion span:hover {
-    color: #88b9ff;
+    color: var(--accent-secondary);
+    text-shadow: 0 0 8px var(--glow-primary);
 }
 
 /* Error message */
 .err-div {
     margin-top: 10px;
-    color: #ff6b6b;
+    color: var(--error-color, #ff6b6b);
     font-size: 0.9rem;
     text-align: left;
     min-height: 20px;
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
 }
 
 /* Animation */

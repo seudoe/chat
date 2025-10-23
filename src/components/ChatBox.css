@@ -1,29 +1,74 @@
 
-.right-cont{
+.right-cont {
     flex: 1;
-
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
 
-    header{
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at top right, rgba(123, 44, 191, 0.1), transparent 60%);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    header {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 80px;
-        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+        background: var(--gradient-header);
+        box-shadow: 0 4px 10px var(--shadow-color);
         z-index: 100;
-    }
-    
-    .chat-box{
-        width: 100%;
-        flex: 1;
-        background-color: rgb(177, 177, 161);
-        display: flex;
-        flex-direction: column;
-        /* justify-content: end; */
-        /* overflow-y: scroll; */
-        overflow-y: auto; 
-        /* -webkit-overflow-scrolling: touch; */
+        color: var(--text-primary);
+        text-shadow: 0 0 15px var(--glow-primary);
+        position: relative;
+        overflow: hidden;
+        font-weight: 600;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+        }
     }
 
+    .chat-box {
+        width: 100%;
+        flex: 1;
+        background: var(--gradient-dark);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 10px 5px;
+        position: relative;
+        z-index: 2;
+        
+        /* Subtle pattern overlay */
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(rgba(123, 44, 191, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: -1;
+        }
+    }
 }

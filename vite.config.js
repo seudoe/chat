@@ -8,6 +8,9 @@ export default defineConfig({
     proxy: {
       '/data': {
         target : 'http://localhost:4000/'
+      },
+      '/chatter': {
+        target : 'http://localhost:4000/'
       }
     }
   }

@@ -1,72 +1,177 @@
-.left-cont{
-
+.left-cont {
     --headerHeight: 80px;
 
     display: flex;
     flex-direction: column;
     position: relative;
     flex: 1;
-    background-color: rgb(70, 70, 70);
+    background: var(--gradient-dark);
+    border-right: 1px solid rgba(123, 44, 191, 0.2);
+    overflow: hidden;
+    height: 100vh;
+}
 
-    .chats-cont{
-        /* background-color: rgb(30, 102, 78); */
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        margin-top: var(--headerHeight);
-        hr{
-            margin: 0;
-        }
-        .chat-cont{
-            background-color:rgb(34, 43, 40);
-            height: 60px;
-            display: flex;
-            align-items: center;
-            padding: 0 0 0 10px;
-            color: aliceblue;
-            font-size: 20px;
-        }
-        .chat-cont:hover{
-            opacity: 0.8;
-        }
-    }
+.left-cont::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top left, rgba(123, 44, 191, 0.1), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
 
-    header{
-        position: absolute;
-        top: 0;
-        right: 0; left: 0;
-        height: var(--headerHeight);
+.chats-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: var(--headerHeight);
+    padding: 10px;
+    position: relative;
+    z-index: 2;
+    overflow-y: auto;
+    height: calc(100vh - var(--headerHeight));
+}
 
-        display: flex;
+.chats-cont hr {
+    margin: 0;
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-tertiary), transparent);
+    opacity: 0.3;
+}
 
-        .user-name{
-            flex: 8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            color: white;
-            font-weight: 600;
-        }
-        .addF-button-div{
-            flex: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.chat-cont {
+    background: var(--gradient-message);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 15px;
+    color: var(--text-secondary);
+    font-size: 18px;
+    box-shadow: 0 3px 6px var(--shadow-color);
+    border-radius: 8px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+}
 
-            .addF-button{
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                border: none;
+.chat-cont::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(123, 44, 191, 0.05));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
 
-                img{
-                    width: 100%;
-                }
-            }
+.chat-cont:hover {
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+    box-shadow: 0 5px 10px var(--shadow-color), 0 0 15px rgba(123, 44, 191, 0.1);
+    border-left: 3px solid var(--accent-primary);
+    transform: translateY(-2px);
+    color: var(--text-primary);
+}
 
-        }
-    }
+.chat-cont:hover::before {
+    transform: translateX(0);
+}
 
+.left-cont header {
+    position: absolute;
+    top: 0;
+    right: 0; 
+    left: 0;
+    height: var(--headerHeight);
+    background: var(--gradient-header);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    display: flex;
+    z-index: 10;
+    overflow: hidden;
+}
 
+.left-cont header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+.logout-button-div {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-button-div button {
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    background: var(--gradient-button);
+    color: var(--text-primary);
+    font-weight: 600;
+    box-shadow: 0 3px 6px var(--shadow-color), 0 0 10px var(--glow-secondary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.logout-button-div button:hover {
+    background: var(--gradient-button-hover);
+    box-shadow: 0 5px 10px var(--shadow-color), 0 0 15px var(--glow-primary);
+    transform: translateY(-2px);
+}
+
+.user-name {
+    flex: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-shadow: 0 0 15px var(--glow-primary);
+    letter-spacing: 0.5px;
+}
+
+.addF-button-div {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addF-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gradient-button);
+    box-shadow: 0 3px 6px var(--shadow-color), 0 0 10px var(--glow-secondary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.addF-button img {
+    width: 100%;
+    filter: brightness(1.2);
+}
+
+.addF-button:hover {
+    background: var(--gradient-button-hover);
+    box-shadow: 0 5px 10px var(--shadow-color), 0 0 15px var(--glow-primary);
+    transform: translateY(-2px) scale(1.05);
 }
