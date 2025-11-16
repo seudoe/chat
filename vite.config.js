@@ -7,12 +7,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/data': {
-        // target : 'http://localhost:4000/'
-        target : 'https://chaitserver.onrender.com/'
+        target : 'http://localhost:4000/'
+        // target : 'https://chaitserver.onrender.com/'
       },
       '/chatter': {
-        // target : 'http://localhost:4000/'
-        target : 'https://chaitserver.onrender.com/'
+        target : 'http://localhost:4000/'
+        // target : 'https://chaitserver.onrender.com/'
       }
     }
   }

@@ -45,7 +45,7 @@ export function getUserFrends({user}, func){
     })
     .catch(err => {
         console.log('Error in getUserfrends.catch: ',err)
-        func(undefined, 'didntconnect:: ',res)
+        func(undefined, 'didntconnect:: '+res)
     })
 }
 
@@ -76,7 +76,7 @@ export function getChat({userOne, userTwo},func){
 export function sendMsg(msg, frendUsername, func){
     let res
     console.log('cnctr:: sendMsg. frendUsername: ',frendUsername);
-    axios.put(`/data/username`, {
+    axios.put(`/data/${msg.sender}`, {
         action : 2,
         Body:{
             msg: msg,
@@ -92,11 +92,10 @@ export function sendMsg(msg, frendUsername, func){
             func(undefined,'status!=0 :: '+ res)
         }
     })
-        .catch(err => {
+    .catch(err => {
         console.log('Error in sendMsg.catch: ',err)
         func(undefined, 'didntconnect: :',res)
     })
-   
 }
 
 
@@ -104,21 +103,34 @@ export function sendCheckRequest(currentUsername, notifications, setNotification
     console.log('inConnector:: sending check request \ncurrentusername: ','user1','\nNotifications', notifications)
 
     let res;
+    const tempNotifications = new Map(notifications);
     axios.post(`/chatter/${currentUsername}`,{
-        username: 'user1'
+        // username: 'user1'
+        username: currentUsername
     })
     .then((response) => {
         res = response.data;
-        console.log('inConnector.sendCheckReq:got a response: res.status',res.status)
+        console.log('inConnector.sendCheckReq:got a resp: res.status: ',res.status)
         if(res.status === 0){
-            let tempNotifications = notifications;
-            if (tempNotifications.has(res.frend)) tempNotifications.set(res.frend, tempNotifications.get(res.frend)+1);
+            let tempNotifications = new Map(notifications);
+            if (tempNotifications.has(res.frend)) {
+                console.log(`it has`)
+                tempNotifications.set(res.frend, tempNotifications.get(res.frend)+1);
+            }
             else tempNotifications.set(res.frend, 1); 
             setNotifications(tempNotifications)
+            // setNotifications(() => {
+            //     if (tempNotifications.has(res.frend)) tempNotifications.set(res.frend, tempNotifications.get(res.frend)+1);
+            //     else tempNotifications.set(res.frend, 1); 
+            //     return tempNotifications;
+            // });
+            console.log(`\x1b[31m]inConnector.sendCheckReq: status: 0 :: notifications`,tempNotifications)
         }
-        else setNotifications(notifications)
+        else setNotifications(tempNotifications)
+        setTimeout(() => sendCheckRequest(currentUsername, new Map(tempNotifications),setNotifications), 100);
         // sendCheckRequest(currentUsername, notifications, setNotifications)
     }).catch((err) => {
         console.log('inCnctr.sendCheckReq . catch:: Err: ',err)
+        setTimeout(() => sendCheckRequest(currentUsername, new Map(tempNotifications), setNotifications), 3000);
     })
 }

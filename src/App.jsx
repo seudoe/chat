@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router'
 import './App.css'
 
 // import { msgs } from './utils/connector.js'
-import HomePage from './pages/Homepage.jsx'
+import HomePage from './pages/HomePage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 
 function App() {

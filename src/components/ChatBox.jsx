@@ -12,6 +12,7 @@ export default function ChatBox(){
 
     // const [msgs, setMsgs] = useState(null);
     const chatBoxRef = useRef(null);
+    const msgs = activeChatState?.[0]?.msgs ?? [];
 
     // useEffect(() => {  // to update msgs when activeChatState changes
     //     if (activeChatState[0]) {

@@ -3,9 +3,10 @@ import './HomePage.css'
 import ChatBox from "../components/ChatBox"
 import Chats from "../components/Chats"
 import { getUserFrends, loginUser, sendCheckRequest } from '../utils/connector';
+import {getChat} from '../utils/connector'
 // import MsgBox from "../components/MsgBox"
 // import { useState } from 'react-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import WelcomeChatBox from '../components/WelcomeChatBox';
 import AppContext from '../context/AppContext';
 
@@ -14,7 +15,7 @@ import { useNavigate } from 'react-router';
 export default function HomePage(){
     // let error = undefined;
     
-    const { currentUser, setCurrentUser, setUserFrends, activeChatState, currentUserfrends, notifications, setNotifications} = useContext(AppContext);
+    const { currentUser, setCurrentUser, setUserFrends, activeChatState, notifications, setNotifications, frendState } = useContext(AppContext);
 
     // useEffect(() => {
     //     loginUser({username: 'user9', password:'password2'}, (user, err) => {
@@ -66,12 +67,24 @@ export default function HomePage(){
     }
     useEffect(() => {
         checkLocal();
-        setNotifications(new Map())
-    },[]) 
+        setNotifications(prev => prev)
+    },[])
 
     useEffect(() => {
         console.log('in Homepage.useState:: Sending checck req\ncurrentUser',currentUser,'\nnotifications: ',notifications)
         sendCheckRequest( currentUser.username, notifications, setNotifications)
+        if(frendState[0]) getChat({
+            userOne: currentUser,
+            userTwo: frendState[0]
+        },(chat, err) => {
+            if(err) console.log(err);
+            else {
+                if(chat){console.log('chat!=null'); activeChatState[1](chat);}
+                else{ console.log('chat=null || undefined')
+                    activeChatState[1]({});
+                }
+            }
+        })
     }, [currentUser, notifications])
 
     console.log('local:',JSON.parse(localStorage.getItem('chatterAndSomething99')));

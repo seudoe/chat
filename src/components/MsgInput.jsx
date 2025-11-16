@@ -30,6 +30,7 @@ export default function MsgInput(){
             status: 'N'
         };
         msgInpState[1]('');
+        console.log('sending msg: ',msg);
         sendMsg(msg, frendState[0].username, (chat, err) => {
             if(err) console.log('Error in sendMsg: ',err)
             else activeChatState[1](chat)
