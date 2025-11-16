@@ -1,4 +1,7 @@
-# React + Vite
+# Chat app
+
+## This is the front end of the Chatter app
+## The backend of this is in [here](https://github.com/Maharaj04/chaitServer/)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
